@@ -18,9 +18,11 @@ import itertools
 
 ALPHA=0.5
 
+import PyPluMA
+
 def buildNetworkXGraph(myfile):
  if (myfile[len(myfile)-3:] == "csv"):
-  print "Reading CSV File: ", myfile
+  PyPluMA.log("Reading CSV File: "+myfile)
   G=networkx.Graph()
   ###########################################################
   # Read the file
@@ -61,10 +63,10 @@ def buildNetworkXGraph(myfile):
    i = i + 1
   ############################################################
  else:
-  print "Reading GML File..."
+  PyPluMA.log("Reading GML File...")
   G = networkx.read_gml(myfile)
   bacteria = G.nodes()
-  print "Done."
+  PyPluMA.log("Done.")
 
  return bacteria, G
 
@@ -88,7 +90,7 @@ class PageRankPlugin:
      #data = [['Name', 'Centrality']]
      centvals = numpy.zeros([len(UG)])
      for i in range(len(UG)):
-       print (UG[i][1], UG[i][0])
+       PyPluMA.log(str((UG[i][1], UG[i][0])))
        bac = UG[i][1]
        if (bac[0] == '\"'):
           bac = bac[1:len(bac)-1]
@@ -99,15 +101,15 @@ class PageRankPlugin:
        #if (i > 2):
        centvals[i] = abs(UG[i][0])
 
-     print "Wrote file: ", file
-     print "Min centrality: ", numpy.min(centvals)
-     print "Max centrality: ", numpy.max(centvals)
+     PyPluMA.log("Wrote file: "+file)
+     PyPluMA.log("Min centrality: "+str(numpy.min(centvals)))
+     PyPluMA.log("Max centrality: "+str(numpy.max(centvals)))
      mymean = numpy.mean(centvals)
      stddev = numpy.std(centvals)
-     print "Standard Deviation: ", stddev
-     print "Two STDs back: ", mymean - 2*stddev
-     print "One STD back: ", mymean - stddev
-     print "One STD forward: ", mymean + stddev
-     print "Two STDs forward: ", mymean + 2*stddev
+     PyPluMA.log("Standard Deviation: "+str(stddev))
+     PyPluMA.log("Two STDs back: "+str(mymean - 2*stddev))
+     PyPluMA.log("One STD back: "+str(mymean - stddev))
+     PyPluMA.log("One STD forward: "+str(mymean + stddev))
+     PyPluMA.log("Two STDs forward: "+str(mymean + 2*stddev))
 
 
