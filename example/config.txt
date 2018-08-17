@@ -1,0 +1,2 @@
+Prefix plugins/PageRank/example/
+Plugin PageRank inputfile corrP.never.csv outputfile corrP.never.pagerank.noa
