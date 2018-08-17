@@ -1,6 +1,7 @@
 import numpy
 import math
 import random
+random.seed(1234)  # ONLY HERE FOR TESTING, COMMENT THIS OUT FOR BETTER RANDOMNESS
 import sys
 import networkx
 ############################################################
